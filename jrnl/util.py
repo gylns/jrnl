@@ -126,7 +126,8 @@ def load_and_fix_json(json_path):
             sys.exit(1)
 
 def get_text_from_editor(config, template=""):
-    _, tmpfile = tempfile.mkstemp(prefix="jrnl", text=True, suffix=".txt")
+    f, tmpfile = tempfile.mkstemp(prefix="jrnl", text=True, suffix=".txt")
+    os.close(f)
     with codecs.open(tmpfile, 'w', "utf-8") as f:
         if template:
             f.write(template)
